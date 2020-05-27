@@ -32,7 +32,7 @@ and for TOM stage: ```python test.py --name TOM --stage TOM --workers 4 --datamo
 ## Citation
 Please cite our paper in your publications if it helps your research:
 ```
-@inproceedings{minar2020cpvtonplus,
+@inproceedings{minaretal2020cpvtonplus,
 	title={CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On},
 	author={Minar, Matiur Rahman and Thai Thanh Tuan and Ahn, Heejune and Rosin, Paul and Lai, Yu-Kun},
 	booktitle={IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},
