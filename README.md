@@ -1,5 +1,6 @@
 # CP-VTON+
 Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On" from CVPRW 2020.
+Project page: https://minar09.github.io/cpvtonplus/
 This implementation is in PyTorch 0.4.1.
 
 ## Citation
