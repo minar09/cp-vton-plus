@@ -40,10 +40,10 @@ label_colours = [(0, 0, 0),  # 0=Background
 
 (cv_major, _, _) = cv2.__version__.split(".")
 if cv_major != '4' and cv_major != '3':
-    print('doesnot support opencv version')  
-    sys.exit() 
-                 
-                 
+    print('doesnot support opencv version')
+    sys.exit()
+
+
 def decode_labels(mask):
     """Decode segmentation masks.
     Args:
@@ -69,7 +69,7 @@ def decode_labels(mask):
 
     return outputs
 
-   
+
 # @TODO this is too simple and pixel based algorithm
 def body_detection(image, seg_mask):
     # binary thresholding by blue ?
@@ -79,20 +79,21 @@ def body_detection(image, seg_mask):
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
     result = cv2.bitwise_and(image, image, mask=mask)
 
-    # bnary threshold by green ? 
+    # bnary threshold by green ?
     b, g, r = cv2.split(result)
     filter = g.copy()
     ret, mask = cv2.threshold(filter, 10, 255, 1)
-    
-    # at least original segmentation is FG  
+
+    # at least original segmentation is FG
     mask[seg_mask] = 1
-    
+
     return mask
 
 
 def shape_from_contour(img, contour):
     dummy_mask = np.zeros((img.shape[0], img.shape[1], 3))
-    dummy_mask = cv2.drawContours(dummy_mask, [contour], 0, (1, 0, 0), thickness=cv2.FILLED)
+    dummy_mask = cv2.drawContours(
+        dummy_mask, [contour], 0, (1, 0, 0), thickness=cv2.FILLED)
     x, y = np.where(dummy_mask[:, :, 0] == 1)
     inside_points = np.stack((x, y), axis=-1)
     return inside_points
@@ -102,12 +103,12 @@ def shape_from_contour(img, contour):
 # relabel the segmented mask with neck
 # dir_dir  : input image file dir  path
 # image_name : image file name
-# mask_dir : original mask dir path 
-# mask_name : original mask image file 
+# mask_dir : original mask dir path
+# mask_name : original mask image file
 # save_dir  : the re-labeled dir path (same name as mask_name)
-# 
 #
-def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_dir = None):
+#
+def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_dir=None):
     print(image_name)
 
     # define paths
@@ -115,24 +116,26 @@ def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_di
     seg_pth = os.path.join(mask_dir, mask_name)
     if save_dir is not None:
         updated_seg_pth = os.path.join(save_dir, mask_name)
-        updated_seg_vis_pth = updated_seg_pth.replace("image-parse-new", "image-parse-new-vis")
+        updated_seg_vis_pth = updated_seg_pth.replace(
+            "image-parse-new", "image-parse-new-vis")
     else:
         updated_seg_pth = None
         updated_seg_vis_pth = None
-    
+
     # Load image and make binary body mask
     img = cv2.imread(img_pth)
-   
+
     # Load the segmentation in grayscale and make binary mask
     segmentation = Image.open(seg_pth)
 
-    gray = cv2.imread(seg_pth, cv2.IMREAD_GRAYSCALE)  # the png file should be 1-ch but it is 3 ch ^^; 
-    # print('shape of seg:', seg_pth, ':', gray.shape)  
-    #_, seg_mask = cv2.threshold(gray, 10, 255, cv2.THRESH_BINARY)  # why 10? bg is 0
-    _, seg_mask = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)    
+    # the png file should be 1-ch but it is 3 ch ^^;
+    gray = cv2.imread(seg_pth, cv2.IMREAD_GRAYSCALE)
+    # print('shape of seg:', seg_pth, ':', gray.shape)
+    # _, seg_mask = cv2.threshold(gray, 10, 255, cv2.THRESH_BINARY)  # why 10? bg is 0
+    _, seg_mask = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
 
     body_mask = body_detection(img, seg_mask)
-    
+
     # Get the neck/skin region (plus extra mis-segmented)
     upper_body = body_mask - seg_mask
     upper_body[upper_body > 0] = 20
@@ -141,17 +144,19 @@ def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_di
     # location info: @TODO by joint locations (neck should between neck and hips vertically, between shoulder horizontally)
     # print(upper_body.shape)
     height, width = upper_body.shape
-    upper_body[height//2:,:] = 0
-    # noise reduction 
-    
+    upper_body[height//2:, :] = 0
+    # noise reduction
+
     # get contours
     if cv_major == '4':
-        contours, hier = cv2.findContours(upper_body, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        contours, hier = cv2.findContours(
+            upper_body, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     elif cv_major == '3':
-        _, contours, hier = cv2.findContours(upper_body, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        _, contours, hier = cv2.findContours(
+            upper_body, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     else:
         return
-    
+
     neck = None
 
     if len(contours) > 0:
@@ -186,12 +191,12 @@ def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_di
         # parsing_im = Image.fromarray(msk)
         # parsing_im.save(updated_seg_vis_pth)
     else:  # display for checking
-    
+
         plt.suptitle(image_name)
         plt.subplot(1, 4, 1)
         plt.title("input")
         plt.axis('off')
-        plt.imshow(img[:,:,::-1])
+        plt.imshow(img[:, :, ::-1])
         plt.subplot(1, 4, 2)
         plt.title("body silhouette")
         plt.axis('off')
@@ -207,7 +212,7 @@ def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_di
         parsing_im = Image.fromarray(msk)   # ???
         plt.imshow(parsing_im)
         plt.show()
-    
+
 
 def main():
     # define paths
@@ -219,21 +224,23 @@ def main():
     # data_mode = "test"
     image_folder = "image"
     seg_folder = "image-parse"
-   
+
     image_dir = os.path.join(os.path.join(root_dir, data_mode), image_folder)
     seg_dir = os.path.join(os.path.join(root_dir, data_mode), seg_folder)
     if updated_seg_folder is not None:
-        updated_seg_dir = os.path.join(os.path.join(root_dir, data_mode), updated_seg_folder)
+        updated_seg_dir = os.path.join(os.path.join(
+            root_dir, data_mode), updated_seg_folder)
         if not os.path.exists(updated_seg_dir):
             os.makedirs(updated_seg_dir)
     else:
         updated_seg_dir = None
-    
+
     image_list = os.listdir(image_dir)
     masks_list = os.listdir(seg_dir)
 
     for each in zip(image_list, masks_list):
-        update_image_segmentation(image_dir, seg_dir, each[0], each[1], updated_seg_dir)
+        update_image_segmentation(
+            image_dir, seg_dir, each[0], each[1], updated_seg_dir)
 
 
 if __name__ == '__main__':

@@ -103,21 +103,24 @@ class CPDataset(data.Dataset):
         mask_array = np.array(im_mask)
 
         # parse_shape = (parse_array > 0).astype(np.float32)  # CP-VTON body shape
-        parse_shape = (mask_array > 0).astype(np.float32)  # Get shape from body mask (CP-VTON+)
+        # Get shape from body mask (CP-VTON+)
+        parse_shape = (mask_array > 0).astype(np.float32)
 
         if self.stage == 'GMM':
             parse_head = (parse_array == 1).astype(np.float32) + \
                 (parse_array == 4).astype(np.float32) + \
-                (parse_array == 13).astype(np.float32)  # CP-VTON+ GMM input (reserved regions)
+                (parse_array == 13).astype(
+                    np.float32)  # CP-VTON+ GMM input (reserved regions)
         else:
             parse_head = (parse_array == 1).astype(np.float32) + \
-                     (parse_array == 2).astype(np.float32) + \
-                     (parse_array == 4).astype(np.float32) + \
-                     (parse_array == 9).astype(np.float32) + \
-                     (parse_array == 12).astype(np.float32) + \
-                     (parse_array == 13).astype(np.float32) + \
-                     (parse_array == 16).astype(np.float32) + \
-                     (parse_array == 17).astype(np.float32)  # CP-VTON+ TOM input (reserved regions)
+                (parse_array == 2).astype(np.float32) + \
+                (parse_array == 4).astype(np.float32) + \
+                (parse_array == 9).astype(np.float32) + \
+                (parse_array == 12).astype(np.float32) + \
+                (parse_array == 13).astype(np.float32) + \
+                (parse_array == 16).astype(np.float32) + \
+                (parse_array == 17).astype(
+                np.float32)  # CP-VTON+ TOM input (reserved regions)
 
         parse_cloth = (parse_array == 5).astype(np.float32) + \
             (parse_array == 6).astype(np.float32) + \

@@ -46,7 +46,8 @@ def get_opt():
                         default='result', help='save result infos')
 
     # parser.add_argument('--checkpoint', type=str, default='checkpoints/GMM/gmm_final.pth', help='model checkpoint for test')
-    parser.add_argument('--checkpoint', type=str, default='checkpoints/TOM/tom_final.pth', help='model checkpoint for test')
+    parser.add_argument('--checkpoint', type=str,
+                        default='checkpoints/TOM/tom_final.pth', help='model checkpoint for test')
 
     parser.add_argument("--display_count", type=int, default=1)
     parser.add_argument("--shuffle", action='store_true',
@@ -94,7 +95,7 @@ def test_gmm(opt, test_loader, model, board):
         cm = inputs['cloth_mask'].cuda()
         im_c = inputs['parse_cloth'].cuda()
         im_g = inputs['grid_image'].cuda()
-        shape_ori = inputs['shape_ori'] #original body shape without bluring
+        shape_ori = inputs['shape_ori']  # original body shape without bluring
 
         grid, theta = model(agnostic, c)
         warped_cloth = F.grid_sample(c, grid, padding_mode='border')
@@ -110,7 +111,8 @@ def test_gmm(opt, test_loader, model, board):
         # save_images(warped_mask*2-1, c_names, warp_mask_dir)
         save_images(warped_cloth, im_names, warp_cloth_dir)
         save_images(warped_mask * 2 - 1, im_names, warp_mask_dir)
-        save_images(shape_ori.cuda() * 0.2 + warped_cloth * 0.8, im_names, result_dir1)
+        save_images(shape_ori.cuda() * 0.2 + warped_cloth *
+                    0.8, im_names, result_dir1)
         save_images(warped_grid, im_names, warped_grid_dir)
         save_images(overlay, im_names, overlayed_TPS_dir)
 
@@ -209,7 +211,8 @@ def main():
             test_gmm(opt, train_loader, model, board)
     elif opt.stage == 'TOM':
         # model = UnetGenerator(25, 4, 6, ngf=64, norm_layer=nn.InstanceNorm2d)  # CP-VTON
-        model = UnetGenerator(26, 4, 6, ngf=64, norm_layer=nn.InstanceNorm2d)  # CP-VTON+
+        model = UnetGenerator(
+            26, 4, 6, ngf=64, norm_layer=nn.InstanceNorm2d)  # CP-VTON+
         # model = UnetGenerator(29, 4, 6, ngf=64, norm_layer=nn.InstanceNorm2d)  # CP-VTON+
         load_checkpoint(model, opt.checkpoint)
         with torch.no_grad():

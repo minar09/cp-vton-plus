@@ -448,25 +448,28 @@ class VGGLoss(nn.Module):
                 self.criterion(x_vgg[i], y_vgg[i].detach())
         return loss
 
+
 class DT(nn.Module):
     def __init__(self):
         super(DT, self).__init__()
 
-    def forward(self,x1, x2):
+    def forward(self, x1, x2):
         dt = torch.abs(x1 - x2)
         return dt
+
 
 class DT2(nn.Module):
     def __init__(self):
         super(DT, self).__init__()
 
-    def forward(self,x1, y1, x2, y2):
-        dt = torch.sqrt(torch.mul(x1 - x2, x1 - x2) + torch.mul(y1 - y2, y1 - y2))
+    def forward(self, x1, y1, x2, y2):
+        dt = torch.sqrt(torch.mul(x1 - x2, x1 - x2) +
+                        torch.mul(y1 - y2, y1 - y2))
         return dt
 
 
 class GicLoss(nn.Module):
-    def __init__(self,opt):
+    def __init__(self, opt):
         super(GicLoss, self).__init__()
         self.dT = DT()
         self.opt = opt

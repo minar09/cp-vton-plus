@@ -49,7 +49,8 @@ def make_body_mask(data_dir, seg_dir, image_name, mask_name, save_dir=None):
     # Load images
     img = cv2.imread(img_pth)
     # segm = Image.open(seg_pth)
-    gray = cv2.imread(seg_pth, cv2.IMREAD_GRAYSCALE)  # the png file should be 1-ch but it is 3 ch ^^;
+    # the png file should be 1-ch but it is 3 ch ^^;
+    gray = cv2.imread(seg_pth, cv2.IMREAD_GRAYSCALE)
     _, seg_mask = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
 
     body_mask = body_detection(img, seg_mask)
@@ -61,7 +62,7 @@ def make_body_mask(data_dir, seg_dir, image_name, mask_name, save_dir=None):
 def main():
     # define paths
 
-    root_dir = "D:/Datasets/viton_resize"
+    root_dir = "data/viton_resize"
     mask_folder = "image-mask"
     seg_folder = "image-parse-new"
 
