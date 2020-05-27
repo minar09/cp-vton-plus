@@ -1,6 +1,6 @@
 # CP-VTON+
 Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On" from CVPRW 2020.
-Project page: https://minar09.github.io/cpvtonplus/.
+<br/>Project page: https://minar09.github.io/cpvtonplus/.
 
 ## Usage
 1) Install the requirements
@@ -12,7 +12,7 @@ Project page: https://minar09.github.io/cpvtonplus/.
 
 ## Installation
 This implementation is built and tested in PyTorch 0.4.1.
-Run `pip install -r requirements.txt`
+<br/>Run `pip install -r requirements.txt`
 
 ## Data preparation
 1) Run `python data_download.py`
@@ -20,14 +20,14 @@ Run `pip install -r requirements.txt`
 3) Run `python body_binary_masking.py`
 
 ## Training
-Run 'python train.py' with your specific usage options for GMM and TOM stage.
-For example, GMM: ```python train.py --name GMM --stage GMM --workers 4 --save_count 5000 --shuffle```
-and for TOM stage, ```python train.py --name TOM --stage TOM --workers 4 --save_count 5000 --shuffle```
+Run `python train.py` with your specific usage options for GMM and TOM stage.
+<br/>For example, GMM: ```python train.py --name GMM --stage GMM --workers 4 --save_count 5000 --shuffle```
+<br/>and for TOM stage, ```python train.py --name TOM --stage TOM --workers 4 --save_count 5000 --shuffle```
 
 ## Testing
 Run 'python test.py' with your specific usage options.
-For example, GMM: ```python test.py --name GMM --stage GMM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/GMM/gmm_final.pth```
-and for TOM stage: ```python test.py --name TOM --stage TOM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/TOM/tom_final.pth```
+<br/>For example, GMM: ```python test.py --name GMM --stage GMM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/GMM/gmm_final.pth```
+<br/>and for TOM stage: ```python test.py --name TOM --stage TOM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/TOM/tom_final.pth```
 
 ## Citation
 Please cite our paper in your publications if it helps your research:
