@@ -32,11 +32,12 @@ Run 'python test.py' with your specific usage options.
 ## Citation
 Please cite our paper in your publications if it helps your research:
 ```
-@inproceedings{minaretal2020cpvtonplus,
+@InProceedings{Minar_CPP_2020_CVPR_Workshops,
 	title={CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On},
 	author={Minar, Matiur Rahman and Thai Thanh Tuan and Ahn, Heejune and Rosin, Paul and Lai, Yu-Kun},
-	booktitle={IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)},
-	year={2020}
+	booktitle = {The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+	month = {June},
+	year = {2020}
 }
 ```
 
