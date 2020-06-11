@@ -1,4 +1,4 @@
-# CP-VTON+
+# CP-VTON+ (CVPRW 2020)
 Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On" from CVPRW 2020.
 <br/>Project page: https://minar09.github.io/cpvtonplus/.
 
