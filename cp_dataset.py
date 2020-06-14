@@ -89,6 +89,7 @@ class CPDataset(data.Dataset):
          (170, 255, 85),  # 17=RightLeg
          (255, 255, 0),  # 18=LeftShoe
          (255, 170, 0)  # 19=RightShoe
+         (170, 170, 50)  # 20=Skin/Neck/Chest (Newly added after running dataset_neck_skin_correction.py)
          ]
          """
 
