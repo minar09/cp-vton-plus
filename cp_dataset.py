@@ -69,27 +69,27 @@ class CPDataset(data.Dataset):
         """
         LIP labels
         
-        [(0, 0, 0),  # 0=Background
+        [(0, 0, 0),    # 0=Background
          (128, 0, 0),  # 1=Hat
          (255, 0, 0),  # 2=Hair
-         (0, 85, 0),  # 3=Glove
+         (0, 85, 0),   # 3=Glove
          (170, 0, 51),  # 4=Sunglasses
          (255, 85, 0),  # 5=UpperClothes
-         (0, 0, 85),  # 6=Dress
+         (0, 0, 85),     # 6=Dress
          (0, 119, 221),  # 7=Coat
-         (85, 85, 0),  # 8=Socks
-         (0, 85, 85),  # 9=Pants
-         (85, 51, 0),  # 10=Jumpsuits
+         (85, 85, 0),    # 8=Socks
+         (0, 85, 85),    # 9=Pants
+         (85, 51, 0),    # 10=Jumpsuits
          (52, 86, 128),  # 11=Scarf
-         (0, 128, 0),  # 12=Skirt
-         (0, 0, 255),  # 13=Face
+         (0, 128, 0),    # 12=Skirt
+         (0, 0, 255),    # 13=Face
          (51, 170, 221),  # 14=LeftArm
-         (0, 255, 255),  # 15=RightArm
+         (0, 255, 255),   # 15=RightArm
          (85, 255, 170),  # 16=LeftLeg
          (170, 255, 85),  # 17=RightLeg
-         (255, 255, 0),  # 18=LeftShoe
-         (255, 170, 0)  # 19=RightShoe
-         (170, 170, 50)  # 20=Skin/Neck/Chest (Newly added after running dataset_neck_skin_correction.py)
+         (255, 255, 0),   # 18=LeftShoe
+         (255, 170, 0)    # 19=RightShoe
+         (170, 170, 50)   # 20=Skin/Neck/Chest (Newly added after running dataset_neck_skin_correction.py)
          ]
          """
 
