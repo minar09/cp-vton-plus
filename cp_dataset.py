@@ -73,7 +73,7 @@ class CPDataset(data.Dataset):
          (128, 0, 0),  # 1=Hat
          (255, 0, 0),  # 2=Hair
          (0, 85, 0),   # 3=Glove
-         (170, 0, 51),  # 4=Sunglasses
+         (170, 0, 51),  # 4=SunGlasses
          (255, 85, 0),  # 5=UpperClothes
          (0, 0, 85),     # 6=Dress
          (0, 119, 221),  # 7=Coat
