@@ -1,6 +1,7 @@
 # CP-VTON+ (CVPRW 2020)
 Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On" from CVPRW 2020.
 <br/>Project page: https://minar09.github.io/cpvtonplus/. 
+<br/>[Checkpoints/Pre-trained-Models](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=gUZQI6)
 <br/><br/>
 ![Teaser](./teaser.png)
 	
@@ -30,6 +31,10 @@ Run `python train.py` with your specific usage options for GMM and TOM stage.
 Run 'python test.py' with your specific usage options.
 <br/>For example, GMM: ```python test.py --name GMM --stage GMM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/GMM/gmm_final.pth```
 <br/>and for TOM stage: ```python test.py --name TOM --stage TOM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/TOM/tom_final.pth```
+
+## Inference/Demo
+Download the saved models from here: [Checkpoints](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=gUZQI6).
+Then run the same step as Testing to test our model.
 
 ## Citation
 Please cite our paper in your publications if it helps your research:
