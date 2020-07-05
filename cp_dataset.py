@@ -96,8 +96,8 @@ class CPDataset(data.Dataset):
         # load parsing image
         parse_name = im_name.replace('.jpg', '.png')
         im_parse = Image.open(
-            # osp.join(self.data_path, 'image-parse', parse_name))
-            osp.join(self.data_path, 'image-parse-new', parse_name))   # updated new segmentation
+            osp.join(self.data_path, 'image-parse', parse_name))
+            # osp.join(self.data_path, 'image-parse-new', parse_name))   # updated new segmentation
         parse_array = np.array(im_parse)
         im_mask = Image.open(
             osp.join(self.data_path, 'image-mask', parse_name))

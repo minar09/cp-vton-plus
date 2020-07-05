@@ -15,8 +15,8 @@ from visualization import board_add_image, board_add_images
 
 def get_opt():
     parser = argparse.ArgumentParser()
-    # parser.add_argument("--name", default="GMM")
-    parser.add_argument("--name", default="TOM")
+    parser.add_argument("--name", default="GMM")
+    # parser.add_argument("--name", default="TOM")
 
     parser.add_argument("--gpu_ids", default="")
     parser.add_argument('-j', '--workers', type=int, default=1)
@@ -26,8 +26,8 @@ def get_opt():
 
     parser.add_argument("--datamode", default="train")
 
-    # parser.add_argument("--stage", default="GMM")
-    parser.add_argument("--stage", default="TOM")
+    parser.add_argument("--stage", default="GMM")
+    # parser.add_argument("--stage", default="TOM")
 
     parser.add_argument("--data_list", default="train_pairs.txt")
 
@@ -81,7 +81,7 @@ def train_gmm(opt, train_loader, model, board):
         im_c = inputs['parse_cloth'].cuda()
         im_g = inputs['grid_image'].cuda()
 
-        grid, theta = model(agnostic, c)
+        grid, theta = model(agnostic, cm)    # can be added c too for new training
         warped_cloth = F.grid_sample(c, grid, padding_mode='border')
         warped_mask = F.grid_sample(cm, grid, padding_mode='zeros')
         warped_grid = F.grid_sample(im_g, grid, padding_mode='zeros')

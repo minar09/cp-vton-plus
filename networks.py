@@ -506,7 +506,7 @@ class GMM(nn.Module):
         self.extractionA = FeatureExtraction(
             22, ngf=64, n_layers=3, norm_layer=nn.BatchNorm2d)
         self.extractionB = FeatureExtraction(
-            3, ngf=64, n_layers=3, norm_layer=nn.BatchNorm2d)
+            1, ngf=64, n_layers=3, norm_layer=nn.BatchNorm2d)
         self.l2norm = FeatureL2Norm()
         self.correlation = FeatureCorrelation()
         self.regression = FeatureRegression(

@@ -16,8 +16,8 @@ from visualization import board_add_image, board_add_images, save_images
 def get_opt():
     parser = argparse.ArgumentParser()
 
-    # parser.add_argument("--name", default="GMM")
-    parser.add_argument("--name", default="TOM")
+    parser.add_argument("--name", default="GMM")
+    # parser.add_argument("--name", default="TOM")
 
     parser.add_argument("--gpu_ids", default="")
     parser.add_argument('-j', '--workers', type=int, default=1)
@@ -25,14 +25,14 @@ def get_opt():
 
     parser.add_argument("--dataroot", default="data")
 
-    parser.add_argument("--datamode", default="train")
-    # parser.add_argument("--datamode", default="test")
+    # parser.add_argument("--datamode", default="train")
+    parser.add_argument("--datamode", default="test")
 
-    # parser.add_argument("--stage", default="GMM")
-    parser.add_argument("--stage", default="TOM")
+    parser.add_argument("--stage", default="GMM")
+    # parser.add_argument("--stage", default="TOM")
 
-    parser.add_argument("--data_list", default="train_pairs.txt")
-    # parser.add_argument("--data_list", default="test_pairs.txt")
+    # parser.add_argument("--data_list", default="train_pairs.txt")
+    parser.add_argument("--data_list", default="test_pairs.txt")
 
     parser.add_argument("--fine_width", type=int, default=192)
     parser.add_argument("--fine_height", type=int, default=256)
@@ -45,9 +45,8 @@ def get_opt():
     parser.add_argument('--result_dir', type=str,
                         default='result', help='save result infos')
 
-    # parser.add_argument('--checkpoint', type=str, default='checkpoints/GMM/gmm_final.pth', help='model checkpoint for test')
-    parser.add_argument('--checkpoint', type=str,
-                        default='checkpoints/TOM/tom_final.pth', help='model checkpoint for test')
+    parser.add_argument('--checkpoint', type=str, default='checkpoints/GMM/gmm_final.pth', help='model checkpoint for test')
+    # parser.add_argument('--checkpoint', type=str, default='checkpoints/TOM/tom_final.pth', help='model checkpoint for test')
 
     parser.add_argument("--display_count", type=int, default=1)
     parser.add_argument("--shuffle", action='store_true',
@@ -95,9 +94,9 @@ def test_gmm(opt, test_loader, model, board):
         cm = inputs['cloth_mask'].cuda()
         im_c = inputs['parse_cloth'].cuda()
         im_g = inputs['grid_image'].cuda()
-        shape_ori = inputs['shape_ori']  # original body shape without bluring
+        shape_ori = inputs['shape_ori']  # original body shape without blurring
 
-        grid, theta = model(agnostic, c)
+        grid, theta = model(agnostic, cm)
         warped_cloth = F.grid_sample(c, grid, padding_mode='border')
         warped_mask = F.grid_sample(cm, grid, padding_mode='zeros')
         warped_grid = F.grid_sample(im_g, grid, padding_mode='zeros')
@@ -175,11 +174,11 @@ def test_tom(opt, test_loader, model, board):
                    [p_rendered, p_tryon, im]]
 
         save_images(p_tryon, im_names, try_on_dir)
-        # save_images(im_h, im_names, im_h_dir)
-        # save_images(shape, im_names, shape_dir)
-        # save_images(im_pose, im_names, im_pose_dir)
-        # save_images(m_composite, im_names, m_composite_dir)
-        # save_images(p_rendered, im_names, p_rendered_dir)  # For test data
+        save_images(im_h, im_names, im_h_dir)
+        save_images(shape, im_names, shape_dir)
+        save_images(im_pose, im_names, im_pose_dir)
+        save_images(m_composite, im_names, m_composite_dir)
+        save_images(p_rendered, im_names, p_rendered_dir)  # For test data
 
         if (step+1) % opt.display_count == 0:
             board_add_images(board, 'combine', visuals, step+1)
@@ -193,30 +192,28 @@ def main():
     print("Start to test stage: %s, named: %s!" % (opt.stage, opt.name))
 
     # create dataset
-    train_dataset = CPDataset(opt)
+    test_dataset = CPDataset(opt)
 
     # create dataloader
-    train_loader = CPDataLoader(opt, train_dataset)
+    test_loader = CPDataLoader(opt, test_dataset)
 
     # visualization
     if not os.path.exists(opt.tensorboard_dir):
         os.makedirs(opt.tensorboard_dir)
     board = SummaryWriter(logdir=os.path.join(opt.tensorboard_dir, opt.name))
 
-    # create model & train
+    # create model & test
     if opt.stage == 'GMM':
         model = GMM(opt)
         load_checkpoint(model, opt.checkpoint)
         with torch.no_grad():
-            test_gmm(opt, train_loader, model, board)
+            test_gmm(opt, test_loader, model, board)
     elif opt.stage == 'TOM':
         # model = UnetGenerator(25, 4, 6, ngf=64, norm_layer=nn.InstanceNorm2d)  # CP-VTON
-        model = UnetGenerator(
-            26, 4, 6, ngf=64, norm_layer=nn.InstanceNorm2d)  # CP-VTON+
-        # model = UnetGenerator(29, 4, 6, ngf=64, norm_layer=nn.InstanceNorm2d)  # CP-VTON+
+        model = UnetGenerator(26, 4, 6, ngf=64, norm_layer=nn.InstanceNorm2d)  # CP-VTON+
         load_checkpoint(model, opt.checkpoint)
         with torch.no_grad():
-            test_tom(opt, train_loader, model, board)
+            test_tom(opt, test_loader, model, board)
     else:
         raise NotImplementedError('Model [%s] is not implemented' % opt.stage)
 
