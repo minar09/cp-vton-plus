@@ -53,8 +53,8 @@ class CPDataset(data.Dataset):
             c = Image.open(osp.join(self.data_path, 'cloth', c_name))
             cm = Image.open(osp.join(self.data_path, 'cloth-mask', c_name))
         else:
-            c = Image.open(osp.join(self.data_path, 'warp-cloth', im_name))
-            cm = Image.open(osp.join(self.data_path, 'warp-mask', im_name))
+            c = Image.open(osp.join(self.data_path, 'warp-cloth', im_name))    # c_name, if that is used when saved
+            cm = Image.open(osp.join(self.data_path, 'warp-mask', im_name))    # c_name, if that is used when saved
 
         c = self.transform(c)  # [-1,1]
         cm_array = np.array(cm)
@@ -96,8 +96,8 @@ class CPDataset(data.Dataset):
         # load parsing image
         parse_name = im_name.replace('.jpg', '.png')
         im_parse = Image.open(
-            osp.join(self.data_path, 'image-parse', parse_name))
-            # osp.join(self.data_path, 'image-parse-new', parse_name))   # updated new segmentation
+            # osp.join(self.data_path, 'image-parse', parse_name))
+            osp.join(self.data_path, 'image-parse-new', parse_name))   # updated new segmentation
         parse_array = np.array(im_parse)
         im_mask = Image.open(
             osp.join(self.data_path, 'image-mask', parse_name))
@@ -125,7 +125,7 @@ class CPDataset(data.Dataset):
 
         parse_cloth = (parse_array == 5).astype(np.float32) + \
             (parse_array == 6).astype(np.float32) + \
-            (parse_array == 7).astype(np.float32)
+            (parse_array == 7).astype(np.float32)    # upper-clothes labels
 
         # shape downsample
         parse_shape_ori = Image.fromarray((parse_shape*255).astype(np.uint8))
