@@ -66,8 +66,8 @@ def main():
     mask_folder = "image-mask"
     seg_folder = "image-parse-new"
 
-    data_mode = "train"
-    # data_mode = "test"
+    # data_mode = "train"
+    data_mode = "test"
     image_folder = "image"
 
     image_dir = os.path.join(os.path.join(root_dir, data_mode), image_folder)

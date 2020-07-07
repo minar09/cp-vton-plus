@@ -220,8 +220,8 @@ def main():
     root_dir = "data/viton_resize"
     updated_seg_folder = "image-parse-new"
 
-    data_mode = "train"
-    # data_mode = "test"
+    # data_mode = "train"
+    data_mode = "test"
     image_folder = "image"
     seg_folder = "image-parse"
 
