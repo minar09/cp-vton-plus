@@ -62,7 +62,8 @@ def make_body_mask(data_dir, seg_dir, image_name, mask_name, save_dir=None):
 def main():
     # define paths
 
-    root_dir = "data/viton_resize"
+    # root_dir = "data/viton_resize"
+    root_dir = "data/"
     mask_folder = "image-mask"
     seg_folder = "image-parse-new"
 
