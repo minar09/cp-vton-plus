@@ -19,8 +19,13 @@ This implementation is built and tested in PyTorch 0.4.1.
 
 ## Data preparation
 1) Run `python data_download.py`
-2) Run `python dataset_neck_skin_correction.py`
-3) Run `python body_binary_masking.py`
+2) Run `python dataset_neck_skin_correction.py`, twice for both 'train' and 'test' data. Please set the correct paths in the script before running.
+3) Run `python body_binary_masking.py`, twice for both 'train' and 'test' data. Please set the correct paths in the script before running.
+
+It will do the following:
+=> data_download.py: Download the full dataset into data/ folder, both train and test.
+=> dataset_neck_skin_correction.py: Add a new segmentation label for neck/skin areas, and save the new segmentation in "image-parse-new" folder. You need to run twice for both train and test data.
+=> body_binary_masking.py: It will create the body binary masks for using as in the inputs of the networks. You need to run twice for both train and test data.
 
 ## Training
 Run `python train.py` with your specific usage options for GMM and TOM stage.
