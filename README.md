@@ -6,12 +6,14 @@ Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Ima
 ![Teaser](./teaser.png)
 	
 ## Usage
+This pipeline is a combination of consecutive training and testing of GMM + TOM. GMM generates the warped clothes according to the target human. Then, TOM blends the warped clothes outputs from GMM into the target human properties, to generate the final try-on output.
+
 1) Install the requirements
 2) Prepare the dataset
 3) Train GMM network
-4) Get warped clothes for training set with trained GMM network, and copy inside `data/viton_resize/train` directory
+4) Get warped clothes for training set with trained GMM network, and copy warped clothes & masks inside `data/train` directory
 5) Train TOM network
-6) Test/evaluate with test set
+6) Test/evaluate with test set, test GMM first, then copy warped clothes & masks inside `data/test` directory, and test TOM
 
 ## Installation
 This implementation is built and tested in PyTorch 0.4.1.
@@ -25,12 +27,14 @@ This implementation is built and tested in PyTorch 0.4.1.
 ## Training
 Run `python train.py` with your specific usage options for GMM and TOM stage.
 <br/>For example, GMM: ```python train.py --name GMM --stage GMM --workers 4 --save_count 5000 --shuffle```
-<br/>and for TOM stage, ```python train.py --name TOM --stage TOM --workers 4 --save_count 5000 --shuffle```
+<br/> Then run test.py for GMM network with the training dataset, which will generate the warped clothes and masks in "warp-cloth" and "warp-mask" folders inside the "result/GMM/train/" directory. Copy the "warp-cloth" and "warp-mask" folders into your data directory, for example inside "data/train" folder.
+<br/>Run TOM stage, ```python train.py --name TOM --stage TOM --workers 4 --save_count 5000 --shuffle```
 
 ## Testing
 Run 'python test.py' with your specific usage options.
 <br/>For example, GMM: ```python test.py --name GMM --stage GMM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/GMM/gmm_final.pth```
-<br/>and for TOM stage: ```python test.py --name TOM --stage TOM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/TOM/tom_final.pth```
+<br/> Then run test.py for GMM network with the testing dataset, which will generate the warped clothes and masks in "warp-cloth" and "warp-mask" folders inside the "result/GMM/test/" directory. Copy the "warp-cloth" and "warp-mask" folders into your data directory, for example inside "data/test" folder.
+<br/>Run TOM stage: ```python test.py --name TOM --stage TOM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/TOM/tom_final.pth```
 
 ## Inference/Demo
 Download the pre-trained models from here: [Checkpoints](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=gUZQI6).
