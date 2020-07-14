@@ -126,7 +126,8 @@ def test_tom(opt, test_loader, model, board):
     model.eval()
 
     base_name = os.path.basename(opt.checkpoint)
-    save_dir = os.path.join(opt.result_dir, base_name, opt.datamode)
+    # save_dir = os.path.join(opt.result_dir, base_name, opt.datamode)
+    save_dir = os.path.join(opt.result_dir, opt.name, opt.datamode)
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
     try_on_dir = os.path.join(save_dir, 'try-on')
