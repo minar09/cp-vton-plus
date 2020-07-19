@@ -21,7 +21,7 @@ This implementation is built and tested in PyTorch 0.4.1.
 
 ## Data preparation
 1) Run `python data_download.py`, it will download the full dataset into data/ folder, both train and test.
-2) Run `python dataset_neck_skin_correction.py`, for both 'train' and 'test' data for training and testing. Please set the correct paths in the script before running. It will add a new segmentation label for neck/skin areas, and save the new segmentation in "image-parse-new" folder. You need to run twice for both train and test data. We also uploaded the corrected segmentation here: [image-parse-new](https://drive.google.com/drive/folders/1fol0mMvrgjGE5lZlqR7y-7LhOOraU1wQ)
+2) Run `python dataset_neck_skin_correction.py`, for both 'train' and 'test' data for training and testing. Please set the correct paths in the script before running. It will add a new segmentation label for neck/skin areas, and save the new segmentation in "image-parse-new" folder. You need to run twice for both train and test data. Alternatively, you can also use our corrected segmentation files. We uploaded the corrected segmentation here: [image-parse-new](https://drive.google.com/drive/folders/1fol0mMvrgjGE5lZlqR7y-7LhOOraU1wQ).
 3) Run `python body_binary_masking.py`, for both 'train' and 'test' data for training and testing. Please set the correct paths in the script before running. It will create the body binary masks for the inputs of the networks. You need to run for both train and test data for training and testing.
 
 ## Training
