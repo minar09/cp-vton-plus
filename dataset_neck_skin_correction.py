@@ -79,7 +79,7 @@ def body_detection(image, seg_mask):
     mask = cv2.inRange(hsv, lower_blue, upper_blue)
     result = cv2.bitwise_and(image, image, mask=mask)
 
-    # bnary threshold by green ?
+    # binary threshold by green ?
     b, g, r = cv2.split(result)
     filter = g.copy()
     ret, mask = cv2.threshold(filter, 10, 255, 1)
@@ -108,19 +108,21 @@ def shape_from_contour(img, contour):
 # save_dir  : the re-labeled dir path (same name as mask_name)
 #
 #
-def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_dir=None):
+def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_dir=None, save_vis=True):
     print(image_name)
 
     # define paths
     img_pth = os.path.join(data_dir, image_name)
     seg_pth = os.path.join(mask_dir, mask_name)
+
+    updated_seg_pth = None
+    updated_seg_vis_pth = None
     if save_dir is not None:
         updated_seg_pth = os.path.join(save_dir, mask_name)
-        updated_seg_vis_pth = updated_seg_pth.replace(
-            "image-parse-new", "image-parse-new-vis")
-    else:
-        updated_seg_pth = None
-        updated_seg_vis_pth = None
+        if save_vis:
+            updated_seg_vis_pth = updated_seg_pth.replace("image-parse-new", "image-parse-new-vis")
+            if not os.path.exists(updated_seg_vis_pth):
+                os.makedirs(updated_seg_vis_pth)
 
     # Load image and make binary body mask
     img = cv2.imread(img_pth)
@@ -141,7 +143,7 @@ def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_di
     upper_body[upper_body > 0] = 20
     upper_body_vis = upper_body.copy()
 
-    # location info: @TODO by joint locations (neck should between neck and hips vertically, between shoulder horizontally)
+    # location info: @TODO by joint locations (neck should be between neck and hips vertically, between shoulder horizontally)
     # print(upper_body.shape)
     height, width = upper_body.shape
     upper_body[height//2:, :] = 0
@@ -187,9 +189,10 @@ def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_di
     # save new segmentation
     if updated_seg_pth is not None:
         cv2.imwrite(updated_seg_pth, result)
-        # msk = decode_labels(result)
-        # parsing_im = Image.fromarray(msk)
-        # parsing_im.save(updated_seg_vis_pth)
+        if save_vis:
+            msk = decode_labels(result)
+            parsing_im = Image.fromarray(msk)
+            parsing_im.save('{}/{}_vis.png'.format(updated_seg_vis_pth, mask_name[:-4]))
     else:  # display for checking
 
         plt.suptitle(image_name)
@@ -217,7 +220,6 @@ def update_image_segmentation(data_dir, mask_dir, image_name, mask_name, save_di
 def main():
     # define paths
 
-    # root_dir = "data/viton_resize"
     root_dir = "data/"
     updated_seg_folder = "image-parse-new"
 
