@@ -2,6 +2,7 @@
 Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On" from CVPRW 2020.
 <br/>Project page: https://minar09.github.io/cpvtonplus/. 
 <br/>Saved/Pre-trained models: [Checkpoints](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=gUZQI6)
+<br/>The code and pre-trained models are tested with pytorch 0.4.1, torchvision 0.2.1, opencv 4.1 and pillow 5.4.
 <br/><br/>
 ![Teaser](./teaser.png)
 	
@@ -39,6 +40,7 @@ Run 'python test.py' with your specific usage options.
 ## Inference/Demo
 Download the pre-trained models from here: [Checkpoints](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=gUZQI6).
 Then run the same step as Testing to test our model.
+The code and pre-trained models are tested with pytorch 0.4.1, torchvision 0.2.1, opencv 4.1 and pillow 5.4.
 
 ## Citation
 Please cite our paper in your publications if it helps your research:
