@@ -18,7 +18,8 @@ This pipeline is a combination of consecutive training and testing of GMM + TOM.
 
 ## Installation
 This implementation is built and tested in PyTorch 0.4.1.
-<br/>Run `pip install -r requirements.txt`
+Pytorch and torchvision are recommended to install with conda: `conda install pytorch=0.4.1 torchvision=0.2.1 -c pytorch`
+<br/>For all packages, run `pip install -r requirements.txt`
 
 ## Data preparation
 1) Run `python data_download.py`, it will download the full dataset into data/ folder, both train and test.
