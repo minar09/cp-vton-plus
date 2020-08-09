@@ -9,6 +9,7 @@ import cv2
 from PIL import Image
 from matplotlib import pyplot as plt
 import sys
+import shutil
 
 N_CLASSES = 21
 fine_width = 192
@@ -241,9 +242,15 @@ def main():
     image_list = os.listdir(image_dir)
     masks_list = os.listdir(seg_dir)
 
+    try:
+        shutil.rmtree(os.path.join(image_dir, '.ipynb_checkpoints'))
+        shutil.rmtree(os.path.join(seg_dir, '.ipynb_checkpoints'))
+    except:
+        print("Clean")   
     for each in zip(image_list, masks_list):
+        mask = each[0].replace("jpg", "png")
         update_image_segmentation(
-            image_dir, seg_dir, each[0], each[1], updated_seg_dir)
+            image_dir, seg_dir, each[0], mask, updated_seg_dir)
 
 
 if __name__ == '__main__':
