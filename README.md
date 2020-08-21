@@ -1,7 +1,7 @@
 # CP-VTON+ (CVPRW 2020)
 Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On" from CVPRW 2020.
 <br/>Project page: https://minar09.github.io/cpvtonplus/. 
-<br/>Saved/Pre-trained models: [Checkpoints](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=6PO4gq)
+<br/>Saved/Pre-trained models: [Checkpoints](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=EaRiFP)
 <br/>Dataset: [VITON_PLUS](https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=4cpFTI)
 <br/>The code and pre-trained models are tested with pytorch 0.4.1, torchvision 0.2.1, opencv 4.1 and pillow 5.4.
 <br/><br/>
@@ -45,8 +45,8 @@ Run 'python test.py' with your specific usage options.
 <br/>Run TOM stage: ```python test.py --name TOM --stage TOM --workers 4 --datamode test --data_list test_pairs.txt --checkpoint checkpoints/TOM/tom_final.pth```
 
 ## Inference/Demo
-Download the pre-trained models from here: [Checkpoints](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=gUZQI6).
-Then run the same step as Testing to test our model.
+Download the pre-trained models from here: https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=EaRiFP.
+Then run the same step as Testing to test/inference our model.
 The code and pre-trained models are tested with pytorch 0.4.1, torchvision 0.2.1, opencv 4.1 and pillow 5.4.
 
 ### Testing with custom images
