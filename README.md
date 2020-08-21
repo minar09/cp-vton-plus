@@ -2,10 +2,10 @@
 Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Image-Based Virtual Try-On" from CVPRW 2020.
 <br/>Project page: https://minar09.github.io/cpvtonplus/. 
 <br/>Saved/Pre-trained models: [Checkpoints](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=6PO4gq)
-<br/>Dataset: [VITON_PLUS](https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=IBkymL)
+<br/>Dataset: [VITON_PLUS](https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=4cpFTI)
 <br/>The code and pre-trained models are tested with pytorch 0.4.1, torchvision 0.2.1, opencv 4.1 and pillow 5.4.
 <br/><br/>
-[Project page](https://minar09.github.io/cpvtonplus/) | [Paper](https://minar09.github.io/cpvtonplus/cvprw20_cpvtonplus.pdf) | [Dataset](https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=IBkymL) | [Model](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=6PO4gq) | [Video](https://www.youtube.com/watch?v=MPB_PYLOfd8)
+[Project page](https://minar09.github.io/cpvtonplus/) | [Paper](https://minar09.github.io/cpvtonplus/cvprw20_cpvtonplus.pdf) | [Dataset](https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=4cpFTI) | [Model](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=6PO4gq) | [Video](https://www.youtube.com/watch?v=MPB_PYLOfd8)
 <br/><br/>
 ![Teaser](./teaser.png)
 	
@@ -25,9 +25,9 @@ Pytorch and torchvision are recommended to install with conda: `conda install py
 <br/>For all packages, run `pip install -r requirements.txt`
 
 ## Data preparation
-For training/testing VITON dataset, our full and processed dataset is available here: https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=IBkymL. After downloading, unzip and put in your data directory.
+For training/testing VITON dataset, our full and processed dataset is available here: https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=4cpFTI. After downloading, unzip to your data directory.
 
-If you want to use the viton_resize dataset, please follow the following steps:
+If you want to use the viton_resize dataset from cp-vton, please follow the following steps:
 1) Run `python data_download.py`, it will download the full dataset into data/ folder, both train and test.
 2) Run `python dataset_neck_skin_correction.py`, for both 'train' and 'test' data for training and testing. Please set the correct paths in the script before running. It will add a new segmentation label for neck/skin areas, and save the new segmentation in "image-parse-new" folder. You need to run twice for both train and test data. Alternatively, you can also use our corrected segmentation files. We uploaded the corrected segmentation here: [image-parse-new](https://drive.google.com/drive/folders/1fol0mMvrgjGE5lZlqR7y-7LhOOraU1wQ).
 3) Run `python body_binary_masking.py`, for both 'train' and 'test' data for training and testing. Please set the correct paths in the script before running. It will create the body binary masks for the inputs of the networks. You need to run for both train and test data for training and testing.
@@ -48,6 +48,16 @@ Run 'python test.py' with your specific usage options.
 Download the pre-trained models from here: [Checkpoints](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=gUZQI6).
 Then run the same step as Testing to test our model.
 The code and pre-trained models are tested with pytorch 0.4.1, torchvision 0.2.1, opencv 4.1 and pillow 5.4.
+
+### Testing with custom images
+to run the model with custom internet images, make sure you have the following:
+
+1) image (image of a person)
+2) image-parse (you can generate with LIP_JPPNet or CIHP_PGN pretrained networks from the person image. If you use LIP_JPPNet/LIP_SSL, then you need to run dataset_neck_skin_connection.py and body_binary_masking.py after generating the segmentation files.)
+3) cloth (in-shop cloth image)
+4) cloth-mask (binary mask of cloth image, you can generate it with simple pillow/opencv function)
+5) pose (pose keypoints of the person, generate with openpose COCO-18 model )
+
 
 ## Citation
 Please cite our paper in your publications if it helps your research:
