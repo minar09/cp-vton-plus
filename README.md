@@ -13,7 +13,7 @@ Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Ima
 This pipeline is a combination of consecutive training and testing of GMM + TOM. GMM generates the warped clothes according to the target human. Then, TOM blends the warped clothes outputs from GMM into the target human properties, to generate the final try-on output.
 
 1) Install the requirements
-2) Prepare the dataset
+2) Download/Prepare the dataset
 3) Train GMM network
 4) Get warped clothes for training set with trained GMM network, and copy warped clothes & masks inside `data/train` directory
 5) Train TOM network
@@ -25,6 +25,9 @@ Pytorch and torchvision are recommended to install with conda: `conda install py
 <br/>For all packages, run `pip install -r requirements.txt`
 
 ## Data preparation
+For training/testing VITON dataset, our full and processed dataset is available here: https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=IBkymL. After downloading, unzip and put in your data directory.
+
+If you want to use the viton_resize dataset, please follow the following steps:
 1) Run `python data_download.py`, it will download the full dataset into data/ folder, both train and test.
 2) Run `python dataset_neck_skin_correction.py`, for both 'train' and 'test' data for training and testing. Please set the correct paths in the script before running. It will add a new segmentation label for neck/skin areas, and save the new segmentation in "image-parse-new" folder. You need to run twice for both train and test data. Alternatively, you can also use our corrected segmentation files. We uploaded the corrected segmentation here: [image-parse-new](https://drive.google.com/drive/folders/1fol0mMvrgjGE5lZlqR7y-7LhOOraU1wQ).
 3) Run `python body_binary_masking.py`, for both 'train' and 'test' data for training and testing. Please set the correct paths in the script before running. It will create the body binary masks for the inputs of the networks. You need to run for both train and test data for training and testing.
