@@ -52,9 +52,9 @@ The code and pre-trained models are tested with pytorch 0.4.1, torchvision 0.2.1
 ### Testing with custom images
 to run the model with custom internet images, make sure you have the following:
 
-1) image (image of a person)
+1) image (image of a person, crop/resize to 192*256 (width*height) pixels)
 2) image-parse (you can generate with LIP_JPPNet or CIHP_PGN pretrained networks from the person image. If you use LIP_JPPNet/LIP_SSL, then you need to run dataset_neck_skin_connection.py and body_binary_masking.py after generating the segmentation files. For CIHP_PGN segmentation, see this [comment](https://github.com/minar09/cp-vton-plus/issues/15#issuecomment-683403388))
-3) cloth (in-shop cloth image)
+3) cloth (in-shop cloth image, crop/resize to 192*256 (width*height) pixels)
 4) cloth-mask (binary mask of cloth image, you can generate it with simple pillow/opencv function)
 5) pose (pose keypoints of the person, generate with openpose COCO-18 model )
 
