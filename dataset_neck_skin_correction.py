@@ -246,8 +246,9 @@ def main():
         shutil.rmtree(os.path.join(image_dir, '.ipynb_checkpoints'))
         shutil.rmtree(os.path.join(seg_dir, '.ipynb_checkpoints'))
     except:
-        print("Clean")   
-    for each in zip(image_list, masks_list):
+        print("Clean")
+
+    for each in zip(image_list.sort(), masks_list.sort()):
         mask = each[0].replace("jpg", "png")
         update_image_segmentation(
             image_dir, seg_dir, each[0], mask, updated_seg_dir)

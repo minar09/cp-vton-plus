@@ -81,7 +81,7 @@ def main():
     if not os.path.exists(mask_dir):
         os.makedirs(mask_dir)
 
-    for each in zip(image_list, seg_list):
+    for each in zip(image_list.sort(), seg_list.sort()):
         make_body_mask(image_dir, seg_dir, each[0], each[1], mask_dir)
 
 
