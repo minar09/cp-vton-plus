@@ -25,7 +25,7 @@ Pytorch and torchvision are recommended to install with conda: `conda install py
 <br/>For all packages, run `pip install -r requirements.txt`
 
 ## Data preparation
-For training/testing VITON dataset, our full and processed dataset is available here: https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=4cpFTI. After downloading, unzip to your data directory.
+For training/testing VITON dataset, our full and processed dataset is available here: https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=4cpFTI. After downloading, unzip to your data directory. Then skip the following and move to Training/Testing.
 
 If you want to use the viton_resize dataset from cp-vton and do the processing manually, please run the following steps:
 1) Run `python data_download.py`, it will download the full dataset into data/ folder, both train and test.
