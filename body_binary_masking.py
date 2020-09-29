@@ -74,14 +74,14 @@ def main():
     image_dir = os.path.join(os.path.join(root_dir, data_mode), image_folder)
     seg_dir = os.path.join(os.path.join(root_dir, data_mode), seg_folder)
 
-    image_list = os.listdir(image_dir)
-    seg_list = os.listdir(seg_dir)
+    image_list = sorted(os.listdir(image_dir))
+    seg_list = sorted(os.listdir(seg_dir))
 
     mask_dir = os.path.join(os.path.join(root_dir, data_mode), mask_folder)
     if not os.path.exists(mask_dir):
         os.makedirs(mask_dir)
 
-    for each in zip(image_list.sort(), seg_list.sort()):
+    for each in zip(image_list, seg_list):
         make_body_mask(image_dir, seg_dir, each[0], each[1], mask_dir)
 
 
