@@ -239,8 +239,8 @@ def main():
     else:
         updated_seg_dir = None
 
-    image_list = os.listdir(image_dir)
-    masks_list = os.listdir(seg_dir)
+    image_list = sorted(os.listdir(image_dir))
+    masks_list = sorted(os.listdir(seg_dir))
 
     try:
         shutil.rmtree(os.path.join(image_dir, '.ipynb_checkpoints'))
@@ -248,7 +248,7 @@ def main():
     except:
         print("Clean")
 
-    for each in zip(image_list.sort(), masks_list.sort()):
+    for each in zip(image_list, masks_list):
         mask = each[0].replace("jpg", "png")
         update_image_segmentation(
             image_dir, seg_dir, each[0], mask, updated_seg_dir)
