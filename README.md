@@ -57,6 +57,7 @@ to run the model with custom internet images, make sure you have the following:
 3) cloth (in-shop cloth image, crop/resize to 192 x 256 (width x height) pixels)
 4) cloth-mask (binary mask of cloth image, you can generate it with simple pillow/opencv function)
 5) pose (pose keypoints of the person, generate with openpose COCO-18 model )
+6) Also, make a test_pairs.txt file for your custom images. Follow the VITON dataset format to keep same arrangements, otherwise you can modify the code.
 
 ### What to do in case of unexpected results
 There are many factors that can make distorted/unexpected results. Can you please do the following?
