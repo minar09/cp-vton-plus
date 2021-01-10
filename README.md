@@ -17,7 +17,9 @@ This pipeline is a combination of consecutive training and testing of GMM + TOM.
 3) Train GMM network
 4) Get warped clothes for training set with trained GMM network, and copy warped clothes & masks inside `data/train` directory
 5) Train TOM network
-6) Test/evaluate with test set, test GMM first, then copy warped clothes & masks inside `data/test` directory, and test TOM
+6) Test GMM for testing set
+7) Get warped clothes for testing set, copy warped clothes & masks inside `data/test` directory
+8) Test TOM testing set
 
 ## Installation
 This implementation is built and tested in PyTorch 0.4.1.
