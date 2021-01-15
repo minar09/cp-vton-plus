@@ -90,8 +90,8 @@ def train_gmm(opt, train_loader, model, board):
                    [c, warped_cloth, im_c],
                    [warped_grid, (warped_cloth+im)*0.5, im]]
 
-        Lwarp = criterionL1(warped_cloth, im_c)    # loss for warped cloth
-
+        # Lwarp = criterionL1(warped_cloth, im_c)    # loss for warped cloth
+        Lwarp = criterionL1(warped_mask, cm)    # loss for warped mask thank xuxiaochun025 for fixing the git code.
         # grid regularization loss
         Lgic = gicloss(grid)
         # 200x200 = 40.000 * 0.001
