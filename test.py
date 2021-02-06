@@ -33,6 +33,7 @@ def get_opt():
 
     # parser.add_argument("--data_list", default="train_pairs.txt")
     parser.add_argument("--data_list", default="test_pairs.txt")
+    # parser.add_argument("--data_list", default="test_pairs_same.txt")
 
     parser.add_argument("--fine_width", type=int, default=192)
     parser.add_argument("--fine_height", type=int, default=256)
