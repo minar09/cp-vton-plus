@@ -59,12 +59,12 @@ to run the model with custom internet images, make sure you have the following:
 ### What to do in case of unexpected results
 There are many factors that can make distorted/unexpected results. Can you please do the following?
 
-1) First try the original viton dataset and test pair combinations, check the immediate results and final output. Check if they are as expected.
-2) If the original viton results are not as expected, please check the issues raised in github, people found several issues and see how they solved it.
-3) If the original viton test results are as expected, then run your custom test sets and check the immediate results and debug where its going wrong.
+1) First try the original viton dataset and test pair combinations, check the intermediate results and the final output. Check if they are as expected.
+2) If the original viton results are not as expected, please check the issues raised in this github repo, people have already found several issues and see how they solved it.
+3) If the original viton test results are as expected, then run your custom test sets and check the intermediate results and debug where its going wrong.
 4) If you are testing with custom images then check the github repository readme and related issues on how to run with custom images.
 
-Its difficult to understand your issue from only single image/output. As I mentioned, there are various factors. Please debug yourself step by step and see where its going wrong. Check all the available inputs/outputs visually, and check multiple cases to see if the issue is happening for all cases. Good luck to you!
+Its difficult to understand your issue from only single image/output. As I mentioned, there are various factors. Please debug yourself step by step and see where its going wrong. Check all the available intermediate/final inputs/outputs visually, and check multiple cases to see if the issue is happening for all cases. Good luck to you!
 
 
 ## Citation
