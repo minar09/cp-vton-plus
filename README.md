@@ -5,7 +5,7 @@ Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Ima
 <br/>Dataset: [VITON_PLUS](https://1drv.ms/u/s!Ai8t8GAHdzVUiQQYX0azYhqIDPP6?e=4cpFTI)
 <br/>The code and pre-trained models are tested with pytorch 0.4.1, torchvision 0.2.1, opencv-python 4.1 and pillow 5.4 (Python 3 env).
 <br/><br/>
-[Project page](https://minar09.github.io/cpvtonplus/) | [Paper](https://minar09.github.io/cpvtonplus/cvprw20_cpvtonplus.pdf) | [Dataset](https://1drv.ms/u/s!Ai8t8GAHdzVUiQRFmTPrtrAy0ZP5?e=bv8ELl) | [Model](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=6PO4gq) | [Video](https://www.youtube.com/watch?v=MPB_PYLOfd8)
+[Project page](https://minar09.github.io/cpvtonplus/) | [Paper](https://minar09.github.io/cpvtonplus/cvprw20_cpvtonplus.pdf) | [Dataset](https://1drv.ms/u/s!Ai8t8GAHdzVUiQRFmTPrtrAy0ZP5?e=rS1aK8) | [Model](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=6PO4gq) | [Video](https://www.youtube.com/watch?v=MPB_PYLOfd8)
 <br/><br/>
 ![Teaser](./teaser.png)
 	
@@ -27,7 +27,7 @@ Pytorch and torchvision are recommended to install with conda: `conda install py
 <br/>For all packages, run `pip install -r requirements.txt`
 
 ## Data preparation
-For training/testing VITON dataset, our full and processed dataset is available here: https://1drv.ms/u/s!Ai8t8GAHdzVUiQRFmTPrtrAy0ZP5?e=bv8ELl. After downloading, unzip to your data directory.
+For training/testing VITON dataset, our full and processed dataset is available here: https://1drv.ms/u/s!Ai8t8GAHdzVUiQRFmTPrtrAy0ZP5?e=rS1aK8. After downloading, unzip to your data directory.
 
 ## Training
 Run `python train.py` with your specific usage options for GMM and TOM stage.
