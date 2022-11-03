@@ -1,0 +1,50 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  Official implementation for "CP-VTON+: Clothing
+  Shape and Texture Preserving Image-Based Virtual
+  Try-On" from CVPRW 2020.
+message: >-
+  If you use this code and dataset, please cite it
+  using the metadata from this file. Also, please
+  cite the paper separately as well.
+type: software
+authors:
+  - given-names: Matiur Rahman
+    family-names: Minar
+    email: minar09.bd@gmail.com
+    orcid: 'https://orcid.org/0000-0002-3128-2915'
+  - given-names: Thanh Tuan
+    family-names: Thai
+    email: thaithanhtuan1987@gmail.com
+    orcid: 'https://orcid.org/0000-0003-2748-0529'
+identifiers:
+  - type: url
+    value: 'https://github.com/minar09/cp-vton-plus'
+    description: public URL for the code and dataset
+repository-code: 'https://github.com/minar09/cp-vton-plus'
+url: 'https://minar09.github.io/cpvtonplus/'
+repository: 'https://github.com/minar09/cp-vton-plus'
+abstract: >-
+  CP-VTON+ (CVPRW 2020)
+
+  Official implementation for "CP-VTON+: Clothing
+  Shape and Texture Preserving Image-Based Virtual
+  Try-On" from CVPRW 2020.
+
+  Project page:
+  https://minar09.github.io/cpvtonplus/.
+
+  Saved/Pre-trained models: Checkpoints
+
+  Dataset: VITON_PLUS
+
+  The code and pre-trained models are tested with
+  pytorch 0.4.1, torchvision 0.2.1, opencv-python 4.1
+  and pillow 5.4 (Python 3 env).
+keywords:
+  - Virtual try-on
+  - Fashion
+license: MIT
