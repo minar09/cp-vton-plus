@@ -7,7 +7,6 @@ Official implementation for "CP-VTON+: Clothing Shape and Texture Preserving Ima
 <br/><br/>
 [Project page](https://minar09.github.io/cpvtonplus/) | [Paper](https://minar09.github.io/cpvtonplus/cvprw20_cpvtonplus.pdf) | [Dataset](https://1drv.ms/u/s!Ai8t8GAHdzVUiQRFmTPrtrAy0ZP5?e=rS1aK8) | [Model](https://1drv.ms/u/s!Ai8t8GAHdzVUiQA-o3C7cnrfGN6O?e=6PO4gq) | [Video](https://www.youtube.com/watch?v=MPB_PYLOfd8)
 <br/><br/>
-![Teaser](./teaser.png)
 	
 ## Usage
 This pipeline is a combination of consecutive training and testing of GMM + TOM. GMM generates the warped clothes according to the target human. Then, TOM blends the warped clothes outputs from GMM into the target human properties, to generate the final try-on output.
